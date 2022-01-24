@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Create file upload form
-Route::get('/upload-file', 'FileUpload@createForm');
+Route::get('/upload-file', 'FileUpload@createForm'); //Single Upload
+Route::get('/uploads-file', 'FileUploadsController@index'); //Multi Upload
 
 // Store file
-Route::post('/upload-file', 'FileUpload@fileUpload')->name('fileUpload');
+Route::post('/upload-file', 'FileUpload@fileUpload')->name('fileUpload'); //Single Upload
+Route::post('/uploads-file', 'FileUploadsController@fileUploads')->name('imageUpload'); //Multi Upload
