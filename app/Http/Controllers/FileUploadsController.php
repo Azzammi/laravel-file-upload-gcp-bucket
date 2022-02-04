@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic;
 
 class FileUploadsController extends Controller
 {
@@ -21,7 +22,8 @@ class FileUploadsController extends Controller
         if($request->hasFile('imageFile')){
             foreach($request->file('imageFile') as $file){
                 $name = $file->getClientOriginalName();
-                $file->move(public_path().'/uploads/', $name);
+                $file->store('images','s3');
+//                ImageManagerStatic::make($file)->encode('webp',90)->save(public_path('uploads/'.$name.'.webp'));
                 $imgData[] = $name;
             }
 
