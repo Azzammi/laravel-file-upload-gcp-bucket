@@ -20,10 +20,11 @@ class FileUpload extends Controller
 
         if($req->file()) {
             $fileName = time().'_'.$req->file->getClientOriginalName();
-            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+//            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $filePath = $req->file('file')->store('images','s3');
 
             $fileModel->name = time().'_'.$req->file->getClientOriginalName();
-            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->file_path = $filePath;
             $fileModel->save();
 
             return back()

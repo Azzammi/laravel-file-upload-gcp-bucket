@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\FileUploadsController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Create file upload form
-Route::get('/upload-file', 'FileUpload@createForm'); //Single Upload
-Route::get('/uploads-file', 'FileUploadsController@index'); //Multi Upload
+Route::get('/upload-file',  [FileUpload::class,'createForm']); //Single Upload
+Route::get('/uploads-file', [FileUploadsController::class,'index']); //Multi Upload
 
 // Store file
-Route::post('/upload-file', 'FileUpload@fileUpload')->name('fileUpload'); //Single Upload
-Route::post('/uploads-file', 'FileUploadsController@fileUploads')->name('imageUpload'); //Multi Upload
+Route::post('/upload-file', [FileUpload::class,'fileUpload'])->name('fileUpload'); //Single Upload
+Route::post('/uploads-file', [FileUploadsController::class,'fileUploads'])->name('imageUpload'); //Multi Upload
+
+//Show Images
+Route::get('/galleries',GalleryController::class);
