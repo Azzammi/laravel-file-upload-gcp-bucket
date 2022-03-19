@@ -27,7 +27,7 @@ class FileUploadsController extends Controller
         if($request->hasFile('imageFile')){
             foreach($request->file('imageFile') as $file){
                 //Answer From : https://laracasts.com/discuss/channels/laravel/image-intervention-with-laravel-53?page=1&replyId=308335
-                $path = 'images/';
+                $path = 'images/uhuy/';
                 $file_path = $path . Str::random(30) . '.webp';
 
                 $name = $file->getClientOriginalName();
